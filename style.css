@@ -1,0 +1,354 @@
+/* Saratoga Flyers — one small stylesheet, no frameworks. */
+
+:root {
+  --red: #9b2335;
+  --red-dark: #7a1a29;
+  --ink: #23262b;
+  --muted: #5d636b;
+  --paper: #f7f4ee;
+  --card: #ffffff;
+  --line: #e4dfd5;
+  --sky: #dfe9f2;
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(0,0,0,.06), 0 6px 20px rgba(0,0,0,.08);
+  --slab: "Roboto Slab", Rockwell, "Courier New", serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font: 17px/1.65 var(--sans);
+  color: var(--ink);
+  background: var(--paper);
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--red); text-underline-offset: 3px; }
+a:hover { color: var(--red-dark); }
+
+h1, h2, h3 { font-family: var(--slab); line-height: 1.2; margin: 0 0 .5em; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.15rem; }
+
+/* ---------- header ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255,255,255,.94);
+  backdrop-filter: blur(6px);
+  border-bottom: 3px solid var(--red);
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-top: .6rem;
+  padding-bottom: .6rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-family: var(--slab);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+.brand img { width: 40px; height: 40px; border-radius: 50%; }
+
+.site-nav { display: flex; flex-wrap: wrap; gap: .25rem; }
+.site-nav a {
+  padding: .35rem .75rem;
+  border-radius: 999px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: .9rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.site-nav a:hover { background: var(--paper); color: var(--red); }
+.site-nav a[aria-current="page"] { background: var(--red); color: #fff; }
+
+/* ---------- layout ---------- */
+
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 1.25rem; }
+
+main { padding-bottom: 3rem; }
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem 2.25rem;
+  margin-top: 2rem;
+  scroll-margin-top: 90px;
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  position: relative;
+  min-height: 72vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: #fff;
+  background: #2b3a2a url("images/hero-racetrack.jpg") center / cover no-repeat;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.55));
+}
+.hero > div { position: relative; padding: 3rem 1.25rem; }
+.hero h1 {
+  font-size: clamp(2.6rem, 8vw, 4.75rem);
+  margin-bottom: .2em;
+  text-shadow: 0 2px 12px rgba(0,0,0,.35);
+}
+.hero p {
+  font-family: var(--slab);
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  margin: 0 0 1.75rem;
+}
+.hero .badge {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: .2rem .7rem;
+  border: 1px solid rgba(255,255,255,.6);
+  border-radius: 999px;
+  font-size: .8rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+/* smaller banner for inner pages */
+.banner {
+  position: relative;
+  color: #fff;
+  text-align: center;
+  padding: 4.5rem 1.25rem 3.5rem;
+  background: #3b4a5a url("images/clouds-sunrise.jpg") center 60% / cover no-repeat;
+}
+.banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(20,24,32,.45);
+}
+.banner h1 { position: relative; font-size: clamp(2rem, 6vw, 3rem); margin: 0; }
+.banner p { position: relative; margin: .4rem 0 0; opacity: .9; }
+
+/* ---------- buttons ---------- */
+
+.button {
+  display: inline-block;
+  padding: .75rem 1.5rem;
+  border-radius: 6px;
+  background: var(--red);
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: .03em;
+  text-decoration: none;
+  box-shadow: 0 2px 0 var(--red-dark);
+  transition: transform .1s ease, background .1s ease;
+}
+.button:hover { background: var(--red-dark); color: #fff; transform: translateY(-1px); }
+.button.ghost {
+  background: transparent;
+  color: var(--red);
+  border: 2px solid var(--red);
+  box-shadow: none;
+}
+.button.ghost:hover { background: var(--red); color: #fff; }
+
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
+
+/* ---------- home ---------- */
+
+.lead { font-size: 1.15rem; }
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.note {
+  background: var(--sky);
+  border-left: 4px solid var(--red);
+  border-radius: 6px;
+  padding: .9rem 1.1rem;
+  margin: 1.25rem 0;
+}
+.note p { margin: 0; }
+
+/* the "data plate" — quick facts about the plane */
+.plate {
+  background: var(--paper);
+  border: 1px dashed #c9c1b2;
+  border-radius: var(--radius);
+  padding: 1.25rem 1.4rem;
+}
+.plate h3 { color: var(--red); margin-bottom: .75rem; }
+.plate dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: .35rem 1rem; }
+.plate dt { color: var(--muted); font-size: .9rem; }
+.plate dd { margin: 0; font-weight: 600; text-align: right; }
+
+/* ---------- photo gallery (snapshot style) ---------- */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.snap {
+  margin: 0;
+  background: #fff;
+  padding: .6rem .6rem .4rem;
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform .2s ease;
+}
+.snap:nth-child(3n+1) { --tilt: -1.2deg; }
+.snap:nth-child(3n+2) { --tilt: .8deg; }
+.snap:nth-child(3n)   { --tilt: -.4deg; }
+.snap:hover { transform: rotate(0) scale(1.03); }
+.snap a { display: block; }
+.snap img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; border-radius: 2px; }
+.snap figcaption {
+  font-family: var(--slab);
+  font-size: .85rem;
+  color: var(--muted);
+  text-align: center;
+  padding-top: .45rem;
+}
+
+/* ---------- our plane ---------- */
+
+.specs {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 2rem;
+}
+.specs th, .specs td {
+  padding: .6rem .75rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.specs th { color: var(--muted); font-weight: 500; width: 40%; white-space: nowrap; }
+.specs td { font-weight: 600; }
+.specs tr:last-child th, .specs tr:last-child td { border-bottom: 0; }
+
+.equipment {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: .6rem;
+}
+.equipment li {
+  background: var(--paper);
+  border-radius: 6px;
+  padding: .6rem .9rem .6rem 2.2rem;
+  position: relative;
+}
+.equipment li::before {
+  content: "✈";
+  position: absolute;
+  left: .8rem;
+  color: var(--red);
+}
+
+.tail {
+  font-family: var(--slab);
+  font-size: 2.4rem;
+  letter-spacing: .06em;
+  color: var(--red);
+  margin: 0;
+}
+
+/* ---------- resources ---------- */
+
+.quote {
+  font-family: var(--slab);
+  font-style: italic;
+  color: var(--muted);
+  border-left: 3px solid var(--line);
+  margin: 0 0 1rem;
+  padding: .2rem 0 .2rem 1rem;
+}
+.quote cite { font-style: normal; font-size: .9rem; }
+
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.link-grid section {
+  background: var(--paper);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+}
+.link-grid h3 {
+  font-size: .95rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--red);
+  border-bottom: 2px solid var(--line);
+  padding-bottom: .4rem;
+}
+.link-grid ul { margin: 0; padding-left: 1.1rem; }
+.link-grid li { margin: .3rem 0; line-height: 1.4; }
+.link-grid ul ul { margin-top: .3rem; font-size: .92rem; }
+.link-grid .wide { grid-column: 1 / -1; }
+
+/* ---------- footer ---------- */
+
+.site-footer {
+  background: #1f2328;
+  color: #c9cdd2;
+  font-size: .92rem;
+  padding: 2rem 0;
+}
+.site-footer .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.site-footer a { color: #fff; }
+.site-footer p { margin: 0; }
+
+/* ---------- small screens ---------- */
+
+@media (max-width: 760px) {
+  body { font-size: 16px; }
+  .card { padding: 1.5rem 1.25rem; margin-top: 1.25rem; }
+  .two-col { grid-template-columns: 1fr; gap: 1.5rem; }
+  .site-header { position: static; }
+  .site-header .wrap { justify-content: center; gap: .4rem; }
+  .site-nav { justify-content: center; gap: 0; }
+  .site-nav a { padding: .3rem .5rem; font-size: .75rem; letter-spacing: .02em; }
+  .hero { min-height: 60vh; }
+}
