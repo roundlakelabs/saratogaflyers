@@ -15,7 +15,7 @@ can be undone.
 
 1. Go to **https://app.pagescms.org**.
 2. Sign in with your email address, then click the link Pages CMS emails you.
-3. Click the **saratoga-flyers** site.
+3. Click the **sf-website** site.
 
 ## 3. What you can edit
 

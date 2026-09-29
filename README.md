@@ -1,7 +1,7 @@
 # Saratoga Flyers website
 
 The website for Saratoga Flyers, Inc., a flying club at Saratoga County Airport (5B2).
-Live at https://saratogaflyers.org.
+Live at https://saratogaflyers.org. Source: https://github.com/saratogaflyers/sf-website (owned by the club's GitHub organization).
 
 Club members who aren't developers edit content in [Pages CMS](https://pagescms.org). See
 [EDITING.md](EDITING.md) for their instructions. This file is for whoever maintains the code.
@@ -115,7 +115,7 @@ events would stay on the home page.
 - **Domain:** `src/CNAME` holds `saratogaflyers.org` and is copied into the build.
 - **DNS:** set at the domain registrar. For an apex domain, GitHub Pages needs A records
   pointing to `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` (and
-  optionally AAAA records). Add a `www` CNAME pointing to `<org>.github.io`. See
+  optionally AAAA records). Add a `www` CNAME pointing to `saratogaflyers.github.io`. See
   [GitHub's docs](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site).
 - **GitHub Pages:** repo Settings → Pages. Source must be **GitHub Actions**. The custom domain
   and "Enforce HTTPS" are also set there.
