@@ -1,7 +1,7 @@
 # Saratoga Flyers website
 
 The website for Saratoga Flyers, Inc., a flying club at Saratoga County Airport (5B2).
-Live at https://saratogaflyers.org. Source: https://github.com/saratogaflyers/sf-website (owned by the club's GitHub organization).
+Live at https://saratogaflyers.github.io/sf-website/ (moving to https://saratogaflyers.org). Source: https://github.com/saratogaflyers/sf-website (owned by the club's GitHub organization).
 
 Club members who aren't developers edit content in [Pages CMS](https://pagescms.org). See
 [EDITING.md](EDITING.md) for their instructions. This file is for whoever maintains the code.
@@ -57,7 +57,6 @@ src/
   images/                  Design images used by the CSS and templates (logo, hero, banner)
   docs/                    PDFs linked from Resources (kept at their old URLs)
   style.css
-  CNAME                    Custom domain for GitHub Pages
 ```
 
 Every page keeps its original URL (`/index.html`, `/our-plane.html`, etc.). Each page sets
@@ -92,8 +91,10 @@ events would stay on the home page.
   Eleventy treats a `date` key specially and would read these as UTC.
 - Event Markdown is rendered with `templateEngineOverride: md`, so a stray `{{` typed by an
   editor can't break the build.
-- Images picked in the CMS are stored as absolute paths (`/media/photo.jpg`). That only works
-  while the site is served from the domain root, which it is with the custom domain.
+- Images picked in the CMS are stored as root-relative paths (`/media/photo.jpg`). Eleventy's
+  `HtmlBasePlugin` adds `pathPrefix` to these in the built HTML, so they also work while the site
+  lives under `/sf-website/`. Links between pages and to `images/`, `docs/` and `style.css` are
+  plain relative paths, which work either way because every page sits at the site root.
 
 ## Adding a new kind of content
 
@@ -112,7 +113,13 @@ events would stay on the home page.
 
 ## Domain, DNS and hosting settings
 
-- **Domain:** `src/CNAME` holds `saratogaflyers.org` and is copied into the build.
+- **Current URL:** https://saratogaflyers.github.io/sf-website/. The workflow reads the base
+  path from `actions/configure-pages` (`/sf-website` now, empty once a custom domain is set) and
+  passes it to Eleventy as `PATH_PREFIX`. Locally the prefix is `/`; to preview the subfolder build,
+  run `PATH_PREFIX=/sf-website/ npm run build`.
+- **Switching to saratogaflyers.org:** set up DNS (below), then enter the domain under repo
+  Settings → Pages → Custom domain and re-run the workflow. No code change is needed. With
+  Actions-based deploys GitHub ignores `CNAME` files, so the repo doesn't have one.
 - **DNS:** set at the domain registrar. For an apex domain, GitHub Pages needs A records
   pointing to `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` (and
   optionally AAAA records). Add a `www` CNAME pointing to `saratogaflyers.github.io`. See

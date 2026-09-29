@@ -1,3 +1,5 @@
+import { HtmlBasePlugin } from "@11ty/eleventy";
+
 // The club is in New York, so "today" and event times use Eastern time.
 const TIME_ZONE = "America/New_York";
 
@@ -14,12 +16,15 @@ function todayInClubTimeZone() {
 }
 
 export default function (eleventyConfig) {
+  // Prefixes root-relative URLs (e.g. "/media/photo.jpg") with pathPrefix,
+  // so the site works when served from a subfolder like /sf-website/.
+  eleventyConfig.addPlugin(HtmlBasePlugin);
+
   // Static assets are copied to the output folder unchanged.
   eleventyConfig.addPassthroughCopy("src/style.css");
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/docs");
   eleventyConfig.addPassthroughCopy("src/media"); // uploads from Pages CMS
-  eleventyConfig.addPassthroughCopy("src/CNAME");
 
   // Events on or after today, soonest first. Past events drop off at the
   // next build; the deploy workflow rebuilds nightly for this reason.
@@ -48,6 +53,9 @@ export default function (eleventyConfig) {
 }
 
 export const config = {
+  // "/" locally and on a custom domain; "/sf-website/" on the default
+  // GitHub Pages URL. The deploy workflow sets PATH_PREFIX automatically.
+  pathPrefix: process.env.PATH_PREFIX || "/",
   dir: {
     input: "src",
     output: "_site",
