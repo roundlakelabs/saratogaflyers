@@ -198,6 +198,13 @@ main { padding-bottom: 3rem; }
 }
 .note p { margin: 0; }
 
+/* Upcoming events (only shown when there are future events) */
+.events { display: grid; gap: 1.5rem; }
+.event { border-left: 4px solid var(--red); padding-left: 1.1rem; }
+.event h3 { margin: 0 0 .2rem; }
+.event-meta { color: var(--muted); font-size: .95rem; margin: 0 0 .5rem; }
+.event p:last-child { margin-bottom: 0; }
+
 /* the "data plate" — quick facts about the plane */
 .plate {
   background: var(--paper);

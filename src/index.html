@@ -1,15 +1,15 @@
 ---
 layout: layouts/base.njk
 permalink: /index.html
-title: "Saratoga Flyers – Flying Club"
+fullTitle: "Saratoga Flyers – Flying Club"
 description: "Saratoga Flyers is a not-for-profit flying club at Saratoga County Airport (5B2) sharing an affordable Cessna 172."
 ---
 
 <section class="hero">
   <div>
-    <span class="badge">Saratoga County Airport · 5B2</span>
-    <h1>Saratoga Flyers</h1>
-    <p>Experience flying at its most affordable!</p>
+    <span class="badge">{{ home.heroBadge }}</span>
+    <h1>{{ site.clubName }}</h1>
+    <p>{{ home.heroTagline }}</p>
     <a class="button" href="#welcome">Learn More</a>
   </div>
 </section>
@@ -19,40 +19,54 @@ description: "Saratoga Flyers is a not-for-profit flying club at Saratoga County
   <article class="card" id="welcome">
     <div class="two-col">
       <div>
-        <h2>Experience flying at its most affordable!</h2>
-        <p class="lead">Welcome to the internet home of Saratoga Flyers, a flying club based at
-          <a href="https://www.airnav.com/airport/5B2">Saratoga County Airport (5B2)</a>.</p>
-        <p>Join to receive privileges to an affordable Cessna Skyhawk 172.</p>
+        <h2>{{ home.welcomeHeading }}</h2>
+        <div class="lead">{{ home.welcomeIntro | safe }}</div>
+        {{ home.welcomeBody | safe }}
+        {%- if membership.notice %}
         <div class="note">
-          <p><strong>Club membership is limited</strong> – active student pilots now eligible.</p>
+          {{ membership.notice | safe }}
         </div>
+        {%- endif %}
       </div>
 
       <aside class="plate">
-        <h3>N73195 at a glance</h3>
+        <h3>{{ plane.tailNumber }} at a glance</h3>
         <dl>
-          <div><dt>Aircraft</dt><dd>1976 Cessna 172M</dd></div>
-          <div><dt>Engine</dt><dd>Lycoming 160 hp</dd></div>
-          <div><dt>Capital investment</dt><dd>$4,000</dd></div>
-          <div><dt>Monthly dues</dt><dd>$75</dd></div>
-          <div><dt>Flight time</dt><dd>$50/hour dry</dd></div>
-          <div><dt>Avionics</dt><dd>Garmin 430W, ADS-B In/Out</dd></div>
+          <div><dt>Aircraft</dt><dd>{{ plane.aircraft }}</dd></div>
+          <div><dt>Engine</dt><dd>{{ plane.engine }}</dd></div>
+          <div><dt>Capital investment</dt><dd>{{ membership.capitalInvestment }}</dd></div>
+          <div><dt>Monthly dues</dt><dd>{{ membership.monthlyDues }}</dd></div>
+          <div><dt>Flight time</dt><dd>{{ membership.flightRate }}</dd></div>
+          <div><dt>Avionics</dt><dd>{{ plane.avionics }}</dd></div>
         </dl>
         <p style="margin:.9rem 0 0"><a href="our-plane.html">Full specs &amp; equipment →</a></p>
       </aside>
     </div>
   </article>
 
+  {%- set upcoming = collections.events | upcomingEvents %}
+  {%- if upcoming.length %}
+
+  <article class="card" id="events">
+    <h2>Upcoming Events</h2>
+    <div class="events">
+      {%- for event in upcoming %}
+      <section class="event">
+        <h3>{{ event.data.title }}</h3>
+        <p class="event-meta">{{ event.data.start | eventDate }}{% if event.data.location %} · {{ event.data.location }}{% endif %}</p>
+        {{ event.content | safe }}
+        {%- if event.data.link %}
+        <p><a href="{{ event.data.link }}">More details →</a></p>
+        {%- endif %}
+      </section>
+      {%- endfor %}
+    </div>
+  </article>
+  {%- endif %}
+
   <article class="card">
-    <h2>Membership Opportunity</h2>
-    <p>Membership is open to pilots interested in non-commercial flying for fun and sharing their
-      flying experiences. There is no minimum flight experience required for certificated pilots, and
-      active student pilots are now eligible to be members.</p>
-    <p>The club does not provide flight instruction but may accept student pilots as members. It is the
-      responsibility of the student pilot member to work with a Certified Flight Instructor who has been
-      accepted by the club for purposes of individual flight training.</p>
-    <p>If you are interested in joining us, or want more information, please let us know through the
-      <a href="more-info.html">Contact Us</a> page.</p>
+    <h2>{{ membership.heading }}</h2>
+    {{ membership.body | safe }}
     <div class="actions">
       <a class="button" href="more-info.html">Get in touch</a>
       <a class="button ghost" href="our-plane.html">Meet the plane</a>
@@ -60,17 +74,12 @@ description: "Saratoga Flyers is a not-for-profit flying club at Saratoga County
   </article>
 
   <article class="card">
-    <h2>From the Right Seat</h2>
-    <p>A few snapshots from members' flights and hangar days. Click any photo for a bigger view.</p>
+    <h2>{{ home.galleryHeading }}</h2>
+    <p>{{ home.galleryIntro }}</p>
     <div class="gallery">
-      <figure class="snap"><a href="images/wash-day.jpg"><img src="images/wash-day.jpg" alt="Club members washing N73195 on the ramp" loading="lazy"></a><figcaption>Wash day on the ramp</figcaption></figure>
-      <figure class="snap"><a href="images/hero-racetrack.jpg"><img src="images/hero-racetrack.jpg" alt="Saratoga Race Course seen from under the wing" loading="lazy"></a><figcaption>Over the Saratoga track</figcaption></figure>
-      <figure class="snap"><a href="images/winter-lake.jpg"><img src="images/winter-lake.jpg" alt="A long lake among snowy mountains seen past the cowling" loading="lazy"></a><figcaption>Winter lake country</figcaption></figure>
-      <figure class="snap"><a href="images/city-river.jpg"><img src="images/city-river.jpg" alt="A city along the river seen past the wing strut" loading="lazy"></a><figcaption>Along the Hudson</figcaption></figure>
-      <figure class="snap"><a href="images/coastline.jpg"><img src="images/coastline.jpg" alt="A coastline and harbor through the windshield" loading="lazy"></a><figcaption>Out to the coast</figcaption></figure>
-      <figure class="snap"><a href="images/frozen-lake.jpg"><img src="images/frozen-lake.jpg" alt="A frozen lake in the hills" loading="lazy"></a><figcaption>Frozen over</figcaption></figure>
-      <figure class="snap"><a href="images/clouds-sunrise.jpg"><img src="images/clouds-sunrise.jpg" alt="Sunrise over a layer of clouds and mountains" loading="lazy"></a><figcaption>Above the undercast</figcaption></figure>
-      <figure class="snap"><a href="images/sky-inverted.jpg"><img src="images/sky-inverted.jpg" alt="Blue sky and clouds framed by the wing" loading="lazy"></a><figcaption>Blue skies</figcaption></figure>
+      {%- for photo in home.photos %}
+      {% include "photo.njk" %}
+      {%- endfor %}
     </div>
   </article>
 

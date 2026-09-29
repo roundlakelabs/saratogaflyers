@@ -7,7 +7,7 @@
 ] -%}
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="index.html"><img src="images/logo.jpg" alt="">Saratoga Flyers</a>
+    <a class="brand" href="index.html"><img src="images/logo.jpg" alt="">{{ site.clubName }}</a>
     <nav class="site-nav">
       {%- for item in navItems %}
       <a href="{{ item.href }}"{% if page.filePathStem + ".html" == "/" + item.href %} aria-current="page"{% endif %}>{{ item.label }}</a>

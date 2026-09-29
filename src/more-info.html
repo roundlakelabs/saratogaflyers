@@ -1,36 +1,26 @@
 ---
 layout: layouts/base.njk
 permalink: /more-info.html
-title: "Contact Us – Saratoga Flyers"
+title: Contact Us
 description: "Learn more about Saratoga Flyers, Inc. and get in touch."
 ---
-
-<section class="banner">
-  <h1>More Info</h1>
-  <p>We look forward to hearing from you!</p>
-</section>
+{% set bannerHeading = contact.heading %}
+{% set bannerText = contact.subheading %}
+{% include "banner.njk" %}
 
 <main class="wrap">
 
   <article class="card">
     <div class="two-col">
       <div>
-        <p>Saratoga Flyers, Inc. is a 501(c)(7) tax-exempt not-for-profit corporation organized to allow
-          its members to engage in non-commercial flying for fun and to gather together informally for
-          social activities and discussions pertaining to our flying experiences and techniques so as to
-          benefit all members from an educational as well as recreational standpoint.</p>
-        <p>The Club owns a 1976 Cessna Skyhawk (C172) which is hangared at Saratoga County airport (5B2).
-          The board &amp; members meet monthly to discuss the operation of the Club, as well as to do a
-          little hangar flying with one another. The time and location of meetings vary so as to offer
-          opportunities for members with diverse personal schedules to attend.</p>
-        <p>If you are interested in learning more about Saratoga Flyers, or have any questions, please use
-          the button below to contact us.</p>
-        <p>Thank you for your interest in Saratoga Flyers.</p>
+        {{ contact.body | safe }}
         <div class="actions">
-          <a class="button" href="mailto:President@SaratogaFlyers.org?subject=Contact%20from%20Saratoga%20Flyers%20web%20site&amp;body=Please%20include%20your%20name%20and%20phone%20number%20in%20this%20email.">Email Us</a>
+          <a class="button" href="mailto:{{ site.contactEmail }}?subject={{ site.emailSubject | urlencode }}&amp;body={{ site.emailBody | urlencode }}">{{ contact.buttonLabel }}</a>
         </div>
       </div>
-      <figure class="snap" style="--tilt:1.5deg"><img src="images/wash-day.jpg" alt="Club members washing N73195 on the ramp"><figcaption>Members pitching in on wash day</figcaption></figure>
+      {%- if contact.photo %}
+      <figure class="snap" style="--tilt:1.5deg"><img src="{{ contact.photo }}" alt="{{ contact.photoAlt }}"><figcaption>{{ contact.photoCaption }}</figcaption></figure>
+      {%- endif %}
     </div>
   </article>
 
