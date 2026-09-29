@@ -1,0 +1,19 @@
+{
+  "heroBadge": "Saratoga County Airport · 5B2",
+  "heroTagline": "Experience flying at its most affordable!",
+  "welcomeHeading": "Experience flying at its most affordable!",
+  "welcomeIntro": "<p>Welcome to the internet home of Saratoga Flyers, a flying club based at <a href=\"https://www.airnav.com/airport/5B2\">Saratoga County Airport (5B2)</a>.</p>",
+  "welcomeBody": "<p>Join to receive privileges to an affordable Cessna Skyhawk 172.</p>",
+  "galleryHeading": "From the Right Seat",
+  "galleryIntro": "A few snapshots from members' flights and hangar days. Click any photo for a bigger view.",
+  "photos": [
+    { "image": "/media/wash-day.jpg", "caption": "Wash day on the ramp", "alt": "Club members washing N73195 on the ramp" },
+    { "image": "/media/hero-racetrack.jpg", "caption": "Over the Saratoga track", "alt": "Saratoga Race Course seen from under the wing" },
+    { "image": "/media/winter-lake.jpg", "caption": "Winter lake country", "alt": "A long lake among snowy mountains seen past the cowling" },
+    { "image": "/media/city-river.jpg", "caption": "Along the Hudson", "alt": "A city along the river seen past the wing strut" },
+    { "image": "/media/coastline.jpg", "caption": "Out to the coast", "alt": "A coastline and harbor through the windshield" },
+    { "image": "/media/frozen-lake.jpg", "caption": "Frozen over", "alt": "A frozen lake in the hills" },
+    { "image": "/media/clouds-sunrise.jpg", "caption": "Above the undercast", "alt": "Sunrise over a layer of clouds and mountains" },
+    { "image": "/media/sky-inverted.jpg", "caption": "Blue skies", "alt": "Blue sky and clouds framed by the wing" }
+  ]
+}

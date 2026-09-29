@@ -1,0 +1,27 @@
+---
+layout: layouts/base.njk
+permalink: /more-info.html
+title: Contact Us
+description: "Learn more about Saratoga Flyers, Inc. and get in touch."
+---
+{% set bannerHeading = contact.heading %}
+{% set bannerText = contact.subheading %}
+{% include "banner.njk" %}
+
+<main class="wrap">
+
+  <article class="card">
+    <div class="two-col">
+      <div>
+        {{ contact.body | safe }}
+        <div class="actions">
+          <a class="button" href="mailto:{{ site.contactEmail }}?subject={{ site.emailSubject | urlencode }}&amp;body={{ site.emailBody | urlencode }}">{{ contact.buttonLabel }}</a>
+        </div>
+      </div>
+      {%- if contact.photo %}
+      <figure class="snap" style="--tilt:1.5deg"><img src="{{ contact.photo }}" alt="{{ contact.photoAlt }}"><figcaption>{{ contact.photoCaption }}</figcaption></figure>
+      {%- endif %}
+    </div>
+  </article>
+
+</main>

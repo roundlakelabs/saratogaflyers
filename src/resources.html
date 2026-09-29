@@ -1,0 +1,42 @@
+---
+layout: layouts/base.njk
+permalink: /resources.html
+title: Resources
+description: "Weather, preflight, charts and reference links for Saratoga Flyers pilots."
+---
+{% set bannerHeading = resources.heading %}
+{% set bannerText = resources.subheading %}
+{% include "banner.njk" %}
+
+<main class="wrap">
+
+  <article class="card">
+    {%- for quote in resources.quotes %}
+    <blockquote class="quote">“{{ quote.text }}”
+      <cite>– {% if quote.url %}<a href="{{ quote.url }}" target="_blank" rel="noopener">{{ quote.source }}</a>{% else %}{{ quote.source }}{% endif %}</cite></blockquote>
+    {%- endfor %}
+
+    <div class="link-grid">
+      {%- for group in resources.groups %}
+
+      <section{% if group.fullWidth %} class="wide"{% endif %}>
+        <h3>{{ group.heading }}</h3>
+        <ul>
+          {%- for link in group.links %}
+          <li><a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }}</a>
+            {%- if link.sublinks and link.sublinks.length %}
+            <ul>
+              {%- for sub in link.sublinks %}
+              <li><a href="{{ sub.url }}" target="_blank" rel="noopener">{{ sub.label }}</a></li>
+              {%- endfor %}
+            </ul>
+            {%- endif %}</li>
+          {%- endfor %}
+        </ul>
+      </section>
+      {%- endfor %}
+
+    </div>
+  </article>
+
+</main>

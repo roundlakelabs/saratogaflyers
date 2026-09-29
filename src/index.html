@@ -1,0 +1,86 @@
+---
+layout: layouts/base.njk
+permalink: /index.html
+fullTitle: "Saratoga Flyers – Flying Club"
+description: "Saratoga Flyers is a not-for-profit flying club at Saratoga County Airport (5B2) sharing an affordable Cessna 172."
+---
+
+<section class="hero">
+  <div>
+    <span class="badge">{{ home.heroBadge }}</span>
+    <h1>{{ site.clubName }}</h1>
+    <p>{{ home.heroTagline }}</p>
+    <a class="button" href="#welcome">Learn More</a>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <article class="card" id="welcome">
+    <div class="two-col">
+      <div>
+        <h2>{{ home.welcomeHeading }}</h2>
+        <div class="lead">{{ home.welcomeIntro | safe }}</div>
+        {{ home.welcomeBody | safe }}
+        {%- if membership.notice %}
+        <div class="note">
+          {{ membership.notice | safe }}
+        </div>
+        {%- endif %}
+      </div>
+
+      <aside class="plate">
+        <h3>{{ plane.tailNumber }} at a glance</h3>
+        <dl>
+          <div><dt>Aircraft</dt><dd>{{ plane.aircraft }}</dd></div>
+          <div><dt>Engine</dt><dd>{{ plane.engine }}</dd></div>
+          <div><dt>Capital investment</dt><dd>{{ membership.capitalInvestment }}</dd></div>
+          <div><dt>Monthly dues</dt><dd>{{ membership.monthlyDues }}</dd></div>
+          <div><dt>Flight time</dt><dd>{{ membership.flightRate }}</dd></div>
+          <div><dt>Avionics</dt><dd>{{ plane.avionics }}</dd></div>
+        </dl>
+        <p style="margin:.9rem 0 0"><a href="our-plane.html">Full specs &amp; equipment →</a></p>
+      </aside>
+    </div>
+  </article>
+
+  {%- set upcoming = collections.events | upcomingEvents %}
+  {%- if upcoming.length %}
+
+  <article class="card" id="events">
+    <h2>Upcoming Events</h2>
+    <div class="events">
+      {%- for event in upcoming %}
+      <section class="event">
+        <h3>{{ event.data.title }}</h3>
+        <p class="event-meta">{{ event.data.start | eventDate }}{% if event.data.location %} · {{ event.data.location }}{% endif %}</p>
+        {{ event.content | safe }}
+        {%- if event.data.link %}
+        <p><a href="{{ event.data.link }}">More details →</a></p>
+        {%- endif %}
+      </section>
+      {%- endfor %}
+    </div>
+  </article>
+  {%- endif %}
+
+  <article class="card">
+    <h2>{{ membership.heading }}</h2>
+    {{ membership.body | safe }}
+    <div class="actions">
+      <a class="button" href="more-info.html">Get in touch</a>
+      <a class="button ghost" href="our-plane.html">Meet the plane</a>
+    </div>
+  </article>
+
+  <article class="card">
+    <h2>{{ home.galleryHeading }}</h2>
+    <p>{{ home.galleryIntro }}</p>
+    <div class="gallery">
+      {%- for photo in home.photos %}
+      {% include "photo.njk" %}
+      {%- endfor %}
+    </div>
+  </article>
+
+</main>

@@ -1,0 +1,298 @@
+{
+  "heading": "Resources",
+  "subheading": "The links we keep coming back to",
+  "quotes": [
+    {
+      "text": "The pilot in command of an aircraft is directly responsible for, and is the final authority as to, the operation of that aircraft…",
+      "source": "FAR 91.3",
+      "url": "https://ecfr.federalregister.gov/current/title-14/chapter-I/subchapter-F/part-91#section-91.3"
+    },
+    {
+      "text": "Each pilot in command shall, before beginning a flight, become familiar with all available information concerning that flight…",
+      "source": "FAR 91.103",
+      "url": "https://ecfr.federalregister.gov/current/title-14/chapter-I/subchapter-F/part-91#section-91.103"
+    }
+  ],
+  "groups": [
+    {
+      "heading": "Weather",
+      "fullWidth": false,
+      "links": [
+        {
+          "label": "Current Area Observations (AWS)",
+          "url": "https://aviationweather.gov/gfa/?tab=obs&mapLayers=basicMap,airports&layers=rad,metar,airep,sigmet,prog&center=43.034,-73.874&zoom=8.5&tz=local&airportsscale=0.75&airportslabels=1"
+        },
+        {
+          "label": "Flight Service – 1800wxbrief",
+          "url": "https://www.1800wxbrief.com"
+        },
+        {
+          "label": "METARs",
+          "url": "https://aviationweather.gov/data/metar/"
+        },
+        {
+          "label": "TAFs",
+          "url": "https://aviationweather.gov/data/taf/"
+        },
+        {
+          "label": "NOAA Aviation Weather Center",
+          "url": "https://aviationweather.gov/"
+        },
+        {
+          "label": "5B2 AWOS Display",
+          "url": "https://online.saiawos.com/5B2/"
+        },
+        {
+          "label": "NOAA Graphical Forecast for Albany, NY",
+          "url": "https://graphical.weather.gov/sectors/aly.php"
+        },
+        {
+          "label": "Skew T Plot for Albany NY",
+          "url": "https://climate.cod.edu/products/analysis/raob/index.php?type=conus-current-current-skewt-KALB-0"
+        },
+        {
+          "label": "Skew T – interactive (NOAA)",
+          "url": "https://mag.ncep.noaa.gov/sounding-model-parameter.php?area=namer&model=gfs-snd&station=725180&tabch=table_tab"
+        },
+        {
+          "label": "WeatherUnderground (Milton)",
+          "url": "https://www.wunderground.com/dashboard/pws/KNYBALLS51"
+        },
+        {
+          "label": "Northeast Radar (NWS)",
+          "url": "https://radar.weather.gov/?settings=v1_eyJhZ2VuZGEiOnsiaWQiOiJ3ZWF0aGVyIiwiY2VudGVyIjpbLTczLjg2Miw0My4wNTFdLCJsb2NhdGlvbiI6Wy03My44NjIsNDMuMDUxXSwiem9vbSI6N30sImFuaW1hdGluZyI6ZmFsc2UsImJhc2UiOiJzdGFuZGFyZCIsImFydGNjIjpmYWxzZSwiY291bnR5IjpmYWxzZSwiY3dhIjpmYWxzZSwicmZjIjpmYWxzZSwic3RhdGUiOmZhbHNlLCJtZW51Ijp0cnVlLCJzaG9ydEZ1c2VkT25seSI6ZmFsc2UsIm9wYWNpdHkiOnsiYWxlcnRzIjowLjgsImxvY2FsIjowLjYsImxvY2FsU3RhdGlvbnMiOjAuOCwibmF0aW9uYWwiOjAuNn19"
+        }
+      ]
+    },
+    {
+      "heading": "Preflight",
+      "fullWidth": false,
+      "links": [
+        {
+          "label": "FAA NOTAMs",
+          "url": "https://pilotweb.nas.faa.gov/distribution/atcscc.html"
+        },
+        {
+          "label": "FAA TFRs",
+          "url": "https://tfr.faa.gov/tfr2/list.html"
+        },
+        {
+          "label": "Flight Service – 1800wxbrief",
+          "url": "https://www.1800wxbrief.com"
+        },
+        {
+          "label": "Saratoga Flyers Calendar (Flight Circle)",
+          "url": "https://www.flightcircle.com/"
+        }
+      ]
+    },
+    {
+      "heading": "Airport Info",
+      "fullWidth": false,
+      "links": [
+        {
+          "label": "Chart Supplement (formerly A/FD)",
+          "url": "https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/dafd/"
+        },
+        {
+          "label": "Airport Diagrams & Terminal Procedures",
+          "url": "https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/dtpp/"
+        },
+        {
+          "label": "AirNav Directory",
+          "url": "https://www.airnav.com/airports/"
+        },
+        {
+          "label": "AOPA Airport Directory",
+          "url": "https://www.aopa.org/airports/"
+        }
+      ]
+    },
+    {
+      "heading": "Charts",
+      "fullWidth": false,
+      "links": [
+        {
+          "label": "Chart Supplement Search",
+          "url": "https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/dafd/search/"
+        },
+        {
+          "label": "FAA Aeronautical Chart User’s Guide",
+          "url": "https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/aero_guide/"
+        },
+        {
+          "label": "Terminal Procedures and Airport Diagrams",
+          "url": "https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/dtpp/search/"
+        },
+        {
+          "label": "VFR Charts",
+          "url": "https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/vfr/"
+        },
+        {
+          "label": "SkyVector – 5B2",
+          "url": "https://skyvector.com/?ll=43.02272160102735,-73.9271392756292&chart=301&zoom=3"
+        }
+      ]
+    },
+    {
+      "heading": "Flight Planning",
+      "fullWidth": false,
+      "links": [
+        {
+          "label": "AOPA Flight Planner",
+          "url": "https://www.aopa.org/flightplanner/"
+        },
+        {
+          "label": "FltPlan.com",
+          "url": "https://www.fltplan.com"
+        },
+        {
+          "label": "National Airspace System Status",
+          "url": "https://www.fly.faa.gov/ois/"
+        }
+      ]
+    },
+    {
+      "heading": "Learning",
+      "fullWidth": false,
+      "links": [
+        {
+          "label": "FAA Safety Team (FAAST)",
+          "url": "https://www.faasafety.gov/"
+        },
+        {
+          "label": "AOPA Air Safety Institute",
+          "url": "https://www.aopa.org/Pilot-Resources/Air-Safety-Institute.aspx"
+        },
+        {
+          "label": "ASI Safety Quiz",
+          "url": "https://www.aopa.org/Education/Safety-Quizzes.aspx"
+        },
+        {
+          "label": "FAA Safety Briefing",
+          "url": "https://www.faa.gov/news/safety_briefing"
+        },
+        {
+          "label": "Skew-T Primer (PDF)",
+          "url": "docs/skew-t-primer.pdf"
+        }
+      ]
+    },
+    {
+      "heading": "Flight Trackers",
+      "fullWidth": false,
+      "links": [
+        {
+          "label": "ADS-B Exchange",
+          "url": "https://globe.adsbexchange.com/"
+        },
+        {
+          "label": "FlightRadar24",
+          "url": "https://www.flightradar24.com/43.06,-73.87/9"
+        },
+        {
+          "label": "planefinder",
+          "url": "https://planefinder.net/"
+        },
+        {
+          "label": "FlightAware",
+          "url": "https://www.flightaware.com/live/airport/5B2"
+        }
+      ]
+    },
+    {
+      "heading": "This & That",
+      "fullWidth": false,
+      "links": [
+        {
+          "label": "LiveATC",
+          "url": "https://www.liveatc.net/"
+        },
+        {
+          "label": "Sky Vector",
+          "url": "https://skyvector.com/"
+        },
+        {
+          "label": "FAA MedXPress",
+          "url": "https://medxpress.faa.gov/"
+        },
+        {
+          "label": "GATS Jar Procedures (PDF)",
+          "url": "docs/GATSJarProcedures.pdf"
+        }
+      ]
+    },
+    {
+      "heading": "References",
+      "fullWidth": true,
+      "links": [
+        {
+          "label": "FARs (All – 14CFR Aeronautics and Space)",
+          "url": "https://ecfr.federalregister.gov/current/title-14/chapter-I",
+          "sublinks": [
+            {
+              "label": "Part 1 – Definitions and Abbreviations",
+              "url": "https://ecfr.federalregister.gov/current/title-14/chapter-I/subchapter-A/part-1"
+            },
+            {
+              "label": "Part 43 – Aircraft Maintenance, Preventive Maintenance, Rebuilding, and Alteration",
+              "url": "https://ecfr.federalregister.gov/current/title-14/chapter-I/subchapter-C/part-43"
+            },
+            {
+              "label": "Part 61 – Certification: Pilots, Flight Instructors, and Ground Instructors",
+              "url": "https://ecfr.federalregister.gov/current/title-14/chapter-I/subchapter-D/part-61#subpart-A"
+            },
+            {
+              "label": "Part 67 – Medical Standards and Certification",
+              "url": "https://ecfr.federalregister.gov/current/title-14/chapter-I/subchapter-D/part-67"
+            },
+            {
+              "label": "Part 71 – Designation of Airspace Areas",
+              "url": "https://ecfr.federalregister.gov/current/title-14/chapter-I/subchapter-E/part-71"
+            },
+            {
+              "label": "Part 73 – Special Use Airspace",
+              "url": "https://ecfr.federalregister.gov/current/title-14/chapter-I/subchapter-E/part-73"
+            },
+            {
+              "label": "Part 91 – General Operating and Flight Rules",
+              "url": "https://ecfr.federalregister.gov/current/title-14/chapter-I/subchapter-F/part-91#subpart-A"
+            },
+            {
+              "label": "49CFR Part 830 – Notification and Reporting of Aircraft Accidents or Incidents and Overdue Aircraft, and Preservation of Aircraft Wreckage, Mail, Cargo, and Records",
+              "url": "https://ecfr.federalregister.gov/current/title-49/subtitle-B/chapter-VIII/part-830"
+            }
+          ]
+        },
+        {
+          "label": "Aeronautical Information Manual",
+          "url": "https://www.faa.gov/air_traffic/publications/#manuals"
+        },
+        {
+          "label": "Pilot/Controller Glossary",
+          "url": "https://www.faa.gov/air_traffic/publications/#pubs"
+        },
+        {
+          "label": "Airworthiness Directives",
+          "url": "https://drs.faa.gov/browse/ADFRAWD/doctypeDetails"
+        },
+        {
+          "label": "Airplane Flying Handbook",
+          "url": "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/airplane_handbook"
+        },
+        {
+          "label": "FAA Handbooks & Manuals",
+          "url": "https://www.faa.gov/regulations_policies/handbooks_manuals/"
+        },
+        {
+          "label": "Aviation Safety Reporting System (ASRS)",
+          "url": "https://asrs.arc.nasa.gov/report/electronic.html"
+        },
+        {
+          "label": "FAA Unmanned Aircraft Systems",
+          "url": "https://www.faa.gov/uas/"
+        }
+      ]
+    }
+  ]
+}

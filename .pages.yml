@@ -1,0 +1,287 @@
+# Pages CMS configuration (https://pagescms.org/docs/configuration/)
+#
+# Every field `name` below must match the key the templates read in src/.
+# Pages CMS rewrites single files from this schema when saving, so any key
+# in a data file that is not listed here would be dropped on save. If you
+# add a key to a data file, add it here too.
+
+media:
+  input: src/media
+  output: /media
+  rename: safe
+  categories: [image, document]
+
+settings:
+  commit:
+    # Record the editor's name and email on each commit, so the history
+    # shows who changed what.
+    identity: user
+
+content:
+  # ---------------------------------------------------------------- Events
+  - name: events
+    label: Events
+    type: collection
+    path: src/content/events
+    format: yaml-frontmatter
+    exclude: [events.json]
+    filename: "{year}-{month}-{day}-{primary}.md"
+    subfolders: false
+    operations:
+      rename: false
+    view:
+      primary: title
+      fields: [title, start, location]
+      sort: [start, title]
+      default:
+        sort: start
+        order: desc
+    fields:
+      - name: title
+        label: Event name
+        type: string
+        required: true
+      - name: start
+        label: Date and start time
+        description: Events disappear from the website automatically the day after they happen.
+        type: date
+        required: true
+        default: ""
+        options:
+          time: true
+          format: "yyyy-MM-dd'T'HH:mm"
+      - name: location
+        label: Location
+        description: "For example: Club hangar, 5B2"
+        type: string
+      - name: link
+        label: Link for more details (optional)
+        description: A full web address starting with https://
+        type: string
+      - name: body
+        label: Description
+        type: rich-text
+        options:
+          format: markdown
+
+  # ------------------------------------------------------------ Home page
+  - name: home
+    label: Home page
+    type: file
+    path: src/_data/home.json
+    format: json
+    operations: { create: false, rename: false, delete: false }
+    fields:
+      - { name: heroBadge, label: Small label above the club name, type: string }
+      - { name: heroTagline, label: Tagline under the club name, type: string }
+      - { name: welcomeHeading, label: Welcome heading, type: string }
+      - name: welcomeIntro
+        label: Welcome introduction (shown in larger text)
+        type: rich-text
+        options: { format: html, media: false }
+      - name: welcomeBody
+        label: Welcome text
+        type: rich-text
+        options: { format: html, media: false }
+      - { name: galleryHeading, label: Photo gallery heading, type: string }
+      - { name: galleryIntro, label: Photo gallery introduction, type: text }
+      - name: photos
+        label: Gallery photos
+        description: Photos appear in this order. Drag to reorder.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{caption}"
+        fields:
+          - { name: image, label: Photo, type: image, required: true }
+          - { name: caption, label: Caption, type: string }
+          - name: alt
+            label: Photo description (for screen readers)
+            description: Describe what is in the photo, e.g. "Club members washing N73195 on the ramp".
+            type: string
+
+  # ------------------------------------------------------------- The plane
+  - name: plane
+    label: Our Plane
+    type: file
+    path: src/_data/plane.json
+    format: json
+    operations: { create: false, rename: false, delete: false }
+    fields:
+      - { name: tailNumber, label: Tail number, type: string, required: true }
+      - { name: subtitle, label: Subtitle under the page heading, type: string }
+      - name: aircraft
+        label: Aircraft (home page summary)
+        description: 'For example: 1976 Cessna 172M'
+        type: string
+      - { name: engine, label: Engine (home page summary), type: string }
+      - { name: avionics, label: Avionics (home page summary), type: string }
+      - name: specs
+        label: Specifications table
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{label}: {value}"
+        fields:
+          - { name: label, label: Item, type: string }
+          - { name: value, label: Value, type: string }
+      - name: equipment
+        label: Equipment list
+        type: string
+        list: true
+      - { name: photosIntro, label: Photos introduction, type: string }
+      - name: photos
+        label: Plane photos
+        description: Photos appear in this order. Drag to reorder.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{caption}"
+        fields:
+          - { name: image, label: Photo, type: image, required: true }
+          - { name: caption, label: Caption, type: string }
+          - name: alt
+            label: Photo description (for screen readers)
+            description: Describe what is in the photo, e.g. "Club members washing N73195 on the ramp".
+            type: string
+
+
+  # ------------------------------------------------------ Membership & costs
+  - name: membership
+    label: Membership & costs
+    type: file
+    path: src/_data/membership.json
+    format: json
+    operations: { create: false, rename: false, delete: false }
+    fields:
+      - name: capitalInvestment
+        label: Capital investment
+        description: Shown exactly as typed, e.g. $4,000
+        type: string
+      - name: monthlyDues
+        label: Monthly dues
+        description: Shown exactly as typed, e.g. $75
+        type: string
+      - name: flightRate
+        label: Flight time rate
+        description: Shown exactly as typed, e.g. $50/hour dry
+        type: string
+      - name: notice
+        label: Highlighted notice on the home page (optional)
+        description: Leave empty to hide the highlighted box.
+        type: rich-text
+        options: { format: html, media: false }
+      - { name: heading, label: Membership section heading, type: string }
+      - name: body
+        label: Membership text
+        type: rich-text
+        options: { format: html, media: false }
+
+  # ------------------------------------------------------------ Contact page
+  - name: contact
+    label: Contact page
+    type: file
+    path: src/_data/contact.json
+    format: json
+    operations: { create: false, rename: false, delete: false }
+    fields:
+      - { name: heading, label: Page heading, type: string }
+      - { name: subheading, label: Subheading, type: string }
+      - name: body
+        label: Page text
+        type: rich-text
+        options: { format: html, media: false }
+      - name: buttonLabel
+        label: Email button text
+        description: The button emails the contact address from Site settings.
+        type: string
+      - { name: photo, label: Photo, type: image }
+      - { name: photoCaption, label: Photo caption, type: string }
+      - { name: photoAlt, label: Photo description (for screen readers), type: string }
+
+  # ------------------------------------------------------------- Resources
+  - name: resources
+    label: Resources page
+    type: file
+    path: src/_data/resources.json
+    format: json
+    operations: { create: false, rename: false, delete: false }
+    fields:
+      - { name: heading, label: Page heading, type: string }
+      - { name: subheading, label: Subheading, type: string }
+      - name: quotes
+        label: Quotes
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{source}"
+        fields:
+          - { name: text, label: Quote, type: text }
+          - { name: source, label: Source, description: 'For example: FAR 91.3', type: string }
+          - { name: url, label: Source link (optional), type: string }
+      - name: groups
+        label: Link groups
+        description: Each group is a box of links. Drag to reorder.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{heading}"
+        fields:
+          - { name: heading, label: Group heading, type: string, required: true }
+          - name: fullWidth
+            label: Full width
+            description: Stretch this group across the whole page (good for long lists).
+            type: boolean
+          - name: links
+            label: Links
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{label}"
+            fields:
+              - { name: label, label: Link text, type: string, required: true }
+              - name: url
+                label: Web address
+                description: 'A full address (https://...). To link a PDF, upload it under Media and use its address, e.g. /media/my-file.pdf'
+                type: string
+                required: true
+              - name: sublinks
+                label: Indented sub-links (optional)
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: "{label}"
+                fields:
+                  - { name: label, label: Link text, type: string, required: true }
+                  - { name: url, label: Web address, type: string, required: true }
+
+  # ---------------------------------------------------------- Site settings
+  - name: site
+    label: Site settings
+    type: file
+    path: src/_data/site.json
+    format: json
+    operations: { create: false, rename: false, delete: false }
+    fields:
+      - name: clubName
+        label: Club name
+        description: Shown in the header, on the home page, and in browser tabs.
+        type: string
+        required: true
+      - { name: legalName, label: Legal name (footer copyright), type: string }
+      - { name: footerText, label: Footer text, type: string }
+      - name: contactEmail
+        label: Contact email
+        description: Where the Email Us button sends messages.
+        type: string
+        required: true
+      - { name: emailSubject, label: Subject line for contact emails, type: string }
+      - { name: emailBody, label: Starting text for contact emails, type: text }
+      - { name: calendarUrl, label: Member calendar link, type: string }
