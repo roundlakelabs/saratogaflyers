@@ -6,16 +6,17 @@ can be undone.
 
 ## 1. Accept your invitation (first time only)
 
-1. The site maintainer will invite you by email. The email comes from **Pages CMS**.
-2. Click the link in the email. It takes you to **app.pagescms.org**.
+1. The site maintainer will invite you by email. The email comes from **Pages CMS**
+   (the Round Lake Labs editor).
+2. Click the link in the email. It takes you to **cms.roundlakelabs.com**.
 3. Sign in with the **same email address** the invitation was sent to. Pages CMS will email
    you a sign-in link. Click it. You don't need a password or a GitHub account.
 
 ## 2. Signing in later
 
-1. Go to **https://app.pagescms.org**.
+1. Go to **https://cms.roundlakelabs.com**.
 2. Sign in with your email address, then click the link Pages CMS emails you.
-3. Click the **sf-website** site.
+3. Click the **saratogaflyers** site.
 
 ## 3. What you can edit
 

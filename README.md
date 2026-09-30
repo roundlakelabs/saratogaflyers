@@ -1,9 +1,10 @@
 # Saratoga Flyers website
 
 The website for Saratoga Flyers, Inc., a flying club at Saratoga County Airport (5B2).
-Live at https://saratogaflyers.github.io/sf-website/ (moving to https://saratogaflyers.org). Source: https://github.com/saratogaflyers/sf-website (owned by the club's GitHub organization).
+Live at https://www.roundlakelabs.com/saratogaflyers/ (moving to https://saratogaflyers.org). Source: https://github.com/roundlakelabs/saratogaflyers.
 
-Club members who aren't developers edit content in [Pages CMS](https://pagescms.org). See
+Club members who aren't developers edit content in Round Lake Labs' self-hosted
+[Pages CMS](https://pagescms.org) at https://cms.roundlakelabs.com. See
 [EDITING.md](EDITING.md) for their instructions. This file is for whoever maintains the code.
 
 ## Stack, and why
@@ -12,7 +13,7 @@ Club members who aren't developers edit content in [Pages CMS](https://pagescms.
 |---|---|---|
 | Plain HTML + CSS | The site itself (`src/`). No JavaScript. | Small, fast, easy to hand over. |
 | [Eleventy](https://www.11ty.dev/) 3 (Nunjucks templates) | Build step: combines templates with content files into static HTML in `_site/`. | Its only job is to fill templates with content. It's the only dependency. |
-| [Pages CMS](https://pagescms.org) (hosted, free, MIT-licensed) | Web editor for the content files. Saves by committing to this repo. | Editors don't need GitHub accounts or any technical knowledge. |
+| [Pages CMS](https://pagescms.org) (MIT-licensed, self-hosted by Round Lake Labs at cms.roundlakelabs.com) | Web editor for the content files. Saves by committing to this repo. | Editors don't need GitHub accounts or any technical knowledge. |
 | GitHub Actions + GitHub Pages | Builds and hosts the site. | Free, no servers. |
 
 Nothing here costs money and there are no databases or servers.
@@ -93,7 +94,7 @@ events would stay on the home page.
   editor can't break the build.
 - Images picked in the CMS are stored as root-relative paths (`/media/photo.jpg`). Eleventy's
   `HtmlBasePlugin` adds `pathPrefix` to these in the built HTML, so they also work while the site
-  lives under `/sf-website/`. Links between pages and to `images/`, `docs/` and `style.css` are
+  lives under `/saratogaflyers/`. Links between pages and to `images/`, `docs/` and `style.css` are
   plain relative paths, which work either way because every page sits at the site root.
 
 ## Adding a new kind of content
@@ -113,21 +114,24 @@ events would stay on the home page.
 
 ## Domain, DNS and hosting settings
 
-- **Current URL:** https://saratogaflyers.github.io/sf-website/. The workflow reads the base
-  path from `actions/configure-pages` (`/sf-website` now, empty once a custom domain is set) and
-  passes it to Eleventy as `PATH_PREFIX`. Locally the prefix is `/`; to preview the subfolder build,
-  run `PATH_PREFIX=/sf-website/ npm run build`.
+- **Current URL:** https://www.roundlakelabs.com/saratogaflyers/ (GitHub Pages for
+  `roundlakelabs/saratogaflyers`; the org's Pages domain is www.roundlakelabs.com). The
+  workflow reads the base path from `actions/configure-pages` (`/saratogaflyers` now, empty
+  once a custom domain is set) and passes it to Eleventy as `PATH_PREFIX`. Locally the prefix
+  is `/`; to preview the subfolder build, run `PATH_PREFIX=/saratogaflyers/ npm run build`.
 - **Switching to saratogaflyers.org:** set up DNS (below), then enter the domain under repo
   Settings → Pages → Custom domain and re-run the workflow. No code change is needed. With
   Actions-based deploys GitHub ignores `CNAME` files, so the repo doesn't have one.
 - **DNS:** set at the domain registrar. For an apex domain, GitHub Pages needs A records
   pointing to `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` (and
-  optionally AAAA records). Add a `www` CNAME pointing to `saratogaflyers.github.io`. See
+  optionally AAAA records). Add a `www` CNAME pointing to `roundlakelabs.github.io`. See
   [GitHub's docs](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site).
 - **GitHub Pages:** repo Settings → Pages. Source must be **GitHub Actions**. The custom domain
   and "Enforce HTTPS" are also set there.
-- **Pages CMS:** the GitHub App is installed on this repo. Editors (collaborators) are
-  managed at https://app.pagescms.org. They're stored in Pages CMS's database, not in this repo.
+- **Pages CMS:** we use Round Lake Labs' self-hosted instance at https://cms.roundlakelabs.com,
+  not the public app.pagescms.org. Its GitHub App must be installed on
+  `roundlakelabs/saratogaflyers`. Editors (collaborators) are managed at
+  https://cms.roundlakelabs.com and stored in that instance's database, not in this repo.
 
 ### Redirects from an old site
 
