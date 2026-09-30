@@ -17,7 +17,7 @@ function todayInClubTimeZone() {
 
 export default function (eleventyConfig) {
   // Prefixes root-relative URLs (e.g. "/media/photo.jpg") with pathPrefix,
-  // so the site works when served from a subfolder like /sf-website/.
+  // so the site works when served from a subfolder like /saratogaflyers/.
   eleventyConfig.addPlugin(HtmlBasePlugin);
 
   // Static assets are copied to the output folder unchanged.
@@ -53,8 +53,8 @@ export default function (eleventyConfig) {
 }
 
 export const config = {
-  // "/" locally and on a custom domain; "/sf-website/" on the default
-  // GitHub Pages URL. The deploy workflow sets PATH_PREFIX automatically.
+  // "/" locally and on a custom domain; "/saratogaflyers/" on the
+  // GitHub Pages project URL. The deploy workflow sets PATH_PREFIX automatically.
   pathPrefix: process.env.PATH_PREFIX || "/",
   dir: {
     input: "src",

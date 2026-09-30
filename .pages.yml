@@ -1,4 +1,5 @@
-# Pages CMS configuration (https://pagescms.org/docs/configuration/)
+# Pages CMS configuration (https://pagescms.org/docs/configuration/).
+# Editors use Round Lake Labs' self-hosted Pages CMS at https://cms.roundlakelabs.com.
 #
 # Every field `name` below must match the key the templates read in src/.
 # Pages CMS rewrites single files from this schema when saving, so any key
