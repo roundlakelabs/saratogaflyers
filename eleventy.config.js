@@ -17,7 +17,7 @@ function todayInClubTimeZone() {
 
 export default function (eleventyConfig) {
   // Prefixes root-relative URLs (e.g. "/media/photo.jpg") with pathPrefix,
-  // so the site works when served from a subfolder like /saratogaflyers/.
+  // so the site also works when built for a subfolder (PATH_PREFIX).
   eleventyConfig.addPlugin(HtmlBasePlugin);
 
   // Static assets are copied to the output folder unchanged.
@@ -25,6 +25,9 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/docs");
   eleventyConfig.addPassthroughCopy("src/media"); // uploads from Pages CMS
+  // Cloudflare Pages config files, if present: redirects and response headers.
+  eleventyConfig.addPassthroughCopy("src/_redirects");
+  eleventyConfig.addPassthroughCopy("src/_headers");
 
   // Events on or after today, soonest first. Past events drop off at the
   // next build; the deploy workflow rebuilds nightly for this reason.
@@ -53,8 +56,8 @@ export default function (eleventyConfig) {
 }
 
 export const config = {
-  // "/" locally and on a custom domain; "/saratogaflyers/" on the
-  // GitHub Pages project URL. The deploy workflow sets PATH_PREFIX automatically.
+  // Cloudflare Pages serves the site from the domain root, so this is "/".
+  // Set PATH_PREFIX only to build for a subfolder.
   pathPrefix: process.env.PATH_PREFIX || "/",
   dir: {
     input: "src",
