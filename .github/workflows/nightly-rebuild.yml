@@ -1,0 +1,22 @@
+name: Nightly rebuild
+
+# Cloudflare builds and deploys the site itself on every push (Workers Builds).
+# This workflow only asks it to rebuild once a day, so past events drop off
+# the home page even when nothing has been committed.
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 09:10 UTC is 5:10 AM EDT / 4:10 AM EST.
+    - cron: "10 9 * * *"
+
+permissions: {}
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Cloudflare deploy hook
+        run: curl --fail-with-body -sS -X POST "$DEPLOY_HOOK"
+        env:
+          DEPLOY_HOOK: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}

@@ -25,7 +25,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/docs");
   eleventyConfig.addPassthroughCopy("src/media"); // uploads from Pages CMS
-  // Cloudflare Pages config files, if present: redirects and response headers.
+  // Cloudflare static-assets config files, if present: redirects and response headers.
   eleventyConfig.addPassthroughCopy("src/_redirects");
   eleventyConfig.addPassthroughCopy("src/_headers");
 
@@ -56,7 +56,7 @@ export default function (eleventyConfig) {
 }
 
 export const config = {
-  // Cloudflare Pages serves the site from the domain root, so this is "/".
+  // Cloudflare serves the site from the domain root, so this is "/".
   // Set PATH_PREFIX only to build for a subfolder.
   pathPrefix: process.env.PATH_PREFIX || "/",
   dir: {
