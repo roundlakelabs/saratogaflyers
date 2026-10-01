@@ -3,6 +3,8 @@ name: Build and deploy site
 on:
   push:
     branches: [main]
+  # Pull requests from this repo get a preview deploy on a *.pages.dev URL.
+  pull_request:
   workflow_dispatch:
   schedule:
     # Nightly rebuild so past events drop off the home page.
@@ -11,16 +13,17 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
+  deployments: write
 
-# Only one deploy at a time; let an in-progress deploy finish.
+# One deploy per branch at a time; let an in-progress deploy finish.
 concurrency:
-  group: pages
+  group: deploy-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: false
 
 jobs:
-  build:
+  deploy:
+    # Secrets aren't available to pull requests from forks, so skip those.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -28,25 +31,13 @@ jobs:
         with:
           node-version: lts/*
           cache: npm
-      - id: pages
-        uses: actions/configure-pages@v6
       - run: npm ci
-      # base_path is "/saratogaflyers" on the roundlakelabs GitHub Pages URL and
-      # empty once a custom domain is set for this repo, so the build adapts
-      # without code changes.
       - run: npm run build
-        env:
-          PATH_PREFIX: ${{ steps.pages.outputs.base_path }}/
-      - uses: actions/upload-pages-artifact@v5
+      # Deploys to the "main" branch are production; any other branch name
+      # becomes a preview at <branch>.saratogaflyers.pages.dev.
+      - uses: cloudflare/wrangler-action@v3
         with:
-          path: _site
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v5
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          command: pages deploy _site --project-name=saratogaflyers --branch=${{ github.head_ref || github.ref_name }}
