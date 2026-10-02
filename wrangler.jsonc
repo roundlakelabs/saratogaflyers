@@ -1,0 +1,12 @@
+// Cloudflare Worker config. Workers Builds runs `npm run build`, then deploys
+// _site/ as static assets: `wrangler deploy` for main, `wrangler preview` for
+// other branches.
+{
+  "name": "saratogaflyers",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./_site"
+  },
+  // Required by `wrangler preview` (branch preview builds). Can stay empty.
+  "previews": {}
+}

@@ -1,7 +1,7 @@
 # Saratoga Flyers website
 
 The website for Saratoga Flyers, Inc., a flying club at Saratoga County Airport (5B2).
-Hosted on Cloudflare Pages at https://saratogaflyers.pages.dev (moving to https://saratogaflyers.org). Source: https://github.com/roundlakelabs/saratogaflyers.
+Hosted on Cloudflare (Worker `saratogaflyers`, built by Workers Builds) (moving to https://saratogaflyers.org). Source: https://github.com/roundlakelabs/saratogaflyers.
 
 Club members who aren't developers edit content in Round Lake Labs' self-hosted
 [Pages CMS](https://pagescms.org) at https://cms.roundlakelabs.com. See
@@ -14,7 +14,7 @@ Club members who aren't developers edit content in Round Lake Labs' self-hosted
 | Plain HTML + CSS | The site itself (`src/`). No JavaScript. | Small, fast, easy to hand over. |
 | [Eleventy](https://www.11ty.dev/) 3 (Nunjucks templates) | Build step: combines templates with content files into static HTML in `_site/`. | Its only job is to fill templates with content. It's the only dependency. |
 | [Pages CMS](https://pagescms.org) (MIT-licensed, self-hosted by Round Lake Labs at cms.roundlakelabs.com) | Web editor for the content files. Saves by committing to this repo. | Editors don't need GitHub accounts or any technical knowledge. |
-| GitHub Actions + Cloudflare Pages | Actions builds the site; Cloudflare Pages hosts it. | Free, no servers, and supports redirects (`_redirects`) and headers (`_headers`). |
+| Cloudflare Workers Builds | Cloudflare builds the site on every push to `main` and serves it. | Free, no servers, and supports redirects (`_redirects`) and headers (`_headers`). |
 
 Nothing here costs money and there are no databases or servers.
 
@@ -33,7 +33,6 @@ npm run build  # one-off build into _site/
 ```
 .pages.yml                 Pages CMS config: what editors can edit, and the form fields
 eleventy.config.js         Eleventy config: folders, passthrough copies, event filters
-.github/workflows/deploy.yml  Build + deploy to Cloudflare Pages
 src/
   index.html               Home page (Nunjucks template, outputs /index.html)
   our-plane.html           /our-plane.html
@@ -68,20 +67,13 @@ this explicitly with `permalink` in its front matter.
 ```
 Editor saves in Pages CMS
   -> Pages CMS commits the changed file to main
-  -> GitHub Action runs `npm ci && npm run build`
-  -> _site/ is deployed to Cloudflare Pages with Wrangler (about 1–2 minutes end to end)
+  -> Cloudflare Workers Builds sees the push, runs `npm run build`
+  -> _site/ goes live (about 1–2 minutes end to end)
 ```
 
-The same workflow runs when you push to `main`, when you run it manually (Actions tab, "Run
-workflow"), and **nightly at 09:10 UTC**. The nightly run matters: "upcoming events" is decided
-at build time (see `upcomingEvents` in `eleventy.config.js`), so without a daily rebuild past
-events would stay on the home page.
-
-Pull requests from branches in this repo also build and deploy a preview to
-`<branch>.saratogaflyers.pages.dev`; only deploys from `main` go to production.
-
-> GitHub disables scheduled workflows in public repos after 60 days with no commits. If
-> the site goes quiet for that long, re-enable the workflow on the Actions tab.
+Nothing else triggers a build: there is no GitHub Action and no nightly rebuild. "Upcoming
+events" is decided at build time (see `upcomingEvents` in `eleventy.config.js`), and a small
+script on the home page hides any event whose date has passed since the last build.
 
 ### Things to know about the content files
 
@@ -117,19 +109,13 @@ Pull requests from branches in this repo also build and deploy a preview to
 
 ## Domain, DNS and hosting settings
 
-- **Hosting:** Cloudflare Pages project `saratogaflyers` (Direct Upload; the GitHub Action
-  uploads the built `_site/`, Cloudflare doesn't build anything). Production URL:
-  https://saratogaflyers.pages.dev. The project name is set in `.github/workflows/deploy.yml`.
-- **One-time setup:**
-  1. Create the project (production branch `main`):
-     `npx wrangler pages project create saratogaflyers --production-branch=main`
-  2. Create a Cloudflare API token with the **Cloudflare Pages: Edit** permission.
-  3. In GitHub repo Settings → Secrets and variables → Actions, add `CLOUDFLARE_API_TOKEN` and
-     `CLOUDFLARE_ACCOUNT_ID`.
-  4. Run the workflow (Actions tab, "Run workflow").
+- **Hosting:** Cloudflare Worker `saratogaflyers`, connected to this repo with Workers Builds
+  (Cloudflare dashboard → Workers & Pages → saratogaflyers → Settings → Build). Cloudflare's
+  GitHub App pulls and builds the repo itself, so no API tokens or GitHub secrets are needed.
+  Worker settings live in `wrangler.jsonc`. Build status shows up as the "Workers Builds: saratogaflyers" check on each commit.
 - **Custom domain (saratogaflyers.org):** in the Cloudflare dashboard, Workers & Pages →
-  saratogaflyers → Custom domains. Easiest if the domain's DNS is on Cloudflare; otherwise add a
-  CNAME at the registrar pointing to `saratogaflyers.pages.dev` as Cloudflare instructs. Add both
+  saratogaflyers → Settings → Domains & Routes. Worker custom domains need the domain's DNS on
+  Cloudflare (move the nameservers there first). Add both
   `saratogaflyers.org` and `www.saratogaflyers.org`, and redirect one to the other with a
   Cloudflare redirect rule. No code change is needed.
 - **Redirects and headers:** put a [`_redirects`](https://developers.cloudflare.com/pages/configuration/redirects/)

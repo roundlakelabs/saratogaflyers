@@ -29,14 +29,17 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/_redirects");
   eleventyConfig.addPassthroughCopy("src/_headers");
 
-  // Events on or after today, soonest first. Past events drop off at the
-  // next build; the deploy workflow rebuilds nightly for this reason.
+  // Events on or after today, soonest first. Events that pass after the
+  // build are hidden in the browser by a script on the home page.
   eleventyConfig.addFilter("upcomingEvents", (events = []) => {
     const today = todayInClubTimeZone();
     return events
       .filter((event) => eventKey(event.data.start).slice(0, 10) >= today)
       .sort((a, b) => eventKey(a.data.start).localeCompare(eventKey(b.data.start)));
   });
+
+  // "2026-10-12T09:00" -> "2026-10-12" (used by the home page script)
+  eleventyConfig.addFilter("eventDay", (value) => eventKey(value).slice(0, 10));
 
   // "2026-10-12T09:00" -> "Monday, October 12, 2026 · 9:00 AM"
   eleventyConfig.addFilter("eventDate", (value) => {
