@@ -51,7 +51,7 @@ description: "Saratoga Flyers is a not-for-profit flying club at Saratoga County
     <h2>Upcoming Events</h2>
     <div class="events">
       {%- for event in upcoming %}
-      <section class="event">
+      <section class="event" data-day="{{ event.data.start | eventDay }}">
         <h3>{{ event.data.title }}</h3>
         <p class="event-meta">{{ event.data.start | eventDate }}{% if event.data.location %} · {{ event.data.location }}{% endif %}</p>
         {{ event.content | safe }}
@@ -62,6 +62,20 @@ description: "Saratoga Flyers is a not-for-profit flying club at Saratoga County
       {%- endfor %}
     </div>
   </article>
+  <script>
+    // The list above is as of the last build. Hide events that have passed
+    // since then (dates compared in the club's time zone, Eastern).
+    (function () {
+      var today = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York" }).format(new Date());
+      var card = document.getElementById("events");
+      var events = card.querySelectorAll(".event");
+      var left = events.length;
+      events.forEach(function (el) {
+        if (el.dataset.day < today) { el.remove(); left--; }
+      });
+      if (!left) card.remove();
+    })();
+  </script>
   {%- endif %}
 
   <article class="card">
