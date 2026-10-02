@@ -112,7 +112,7 @@ script on the home page hides any event whose date has passed since the last bui
 - **Hosting:** Cloudflare Worker `saratogaflyers`, connected to this repo with Workers Builds
   (Cloudflare dashboard → Workers & Pages → saratogaflyers → Settings → Build). Cloudflare's
   GitHub App pulls and builds the repo itself, so no API tokens or GitHub secrets are needed.
-  Build status shows up as the "Workers Builds: saratogaflyers" check on each commit.
+  Worker settings live in `wrangler.jsonc`. Build status shows up as the "Workers Builds: saratogaflyers" check on each commit.
 - **Custom domain (saratogaflyers.org):** in the Cloudflare dashboard, Workers & Pages →
   saratogaflyers → Settings → Domains & Routes. Worker custom domains need the domain's DNS on
   Cloudflare (move the nameservers there first). Add both
