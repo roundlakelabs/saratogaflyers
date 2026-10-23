@@ -46,6 +46,11 @@
       "image": "/media/sky-inverted.jpg",
       "caption": "Blue skies",
       "alt": "Blue sky and clouds framed by the wing"
+    },
+    {
+      "image": "/media/n73195-potsdam.jpg",
+      "caption": "N73195 visits KPTD",
+      "alt": "N73195 visits KPTD"
     }
   ]
 }
