@@ -5,7 +5,7 @@ fullTitle: "Saratoga Flyers – Flying Club"
 description: "Saratoga Flyers is a not-for-profit flying club at Saratoga County Airport (5B2) sharing an affordable Cessna 172."
 ---
 
-<section class="hero">
+<section class="hero"{% if home.heroImage %} style="background-image: url('{{ home.heroImage | url }}')"{% endif %}>
   <div>
     <span class="badge">{{ home.heroBadge }}</span>
     <h1>{{ site.clubName }}</h1>

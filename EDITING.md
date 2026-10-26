@@ -61,7 +61,7 @@ Lists (equipment, specs, links, photos) have an **Add** button at the bottom. Yo
 
 ## 6. Add or change a photo
 
-1. Open **Home page** (gallery), **Our Plane** (plane photos) or **Contact page**.
+1. Open **Home page** (banner photo or gallery), **Our Plane** (plane photos) or **Contact page**.
 2. To add a photo to a gallery, click **Add** at the bottom of the photo list. To change an
    existing photo, open it and click its current picture.
 3. Pick a photo already on the site, or **upload** a new one from your computer.
