@@ -106,6 +106,7 @@ main { padding-bottom: 3rem; }
   place-items: center;
   text-align: center;
   color: #fff;
+  /* Default photo; the home page sets its own from home.heroImage (CMS). */
   background: #2b3a2a url("images/hero-racetrack.jpg") center / cover no-repeat;
 }
 .hero::before {

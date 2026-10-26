@@ -73,6 +73,10 @@ content:
     format: json
     operations: { create: false, rename: false, delete: false }
     fields:
+      - name: heroImage
+        label: Banner photo at the top of the page
+        description: A wide landscape photo works best. It is darkened slightly so the text stays readable, and the edges may be cropped on phones.
+        type: image
       - { name: heroBadge, label: Small label above the club name, type: string }
       - { name: heroTagline, label: Tagline under the club name, type: string }
       - { name: welcomeHeading, label: Welcome heading, type: string }
